@@ -1,7 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 import App from './components/App';
 import Auth0Provider from './Auth0Provider';
+import store from './store';
 
 render(
   <Auth0Provider
@@ -9,7 +11,9 @@ render(
     client_id={process.env.AUTH0_CLIENT_ID}
     redirectUri={process.env.AUTH0_CALLBACK}
   >
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </Auth0Provider>,
   document.getElementById('root')
 );
